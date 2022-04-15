@@ -1,17 +1,28 @@
-#components-layout-demo-responsive .logo {
-  height: 32px;
-  margin: 16px;
-  background: rgba(255, 255, 255, 0.2);
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+p {
+    margin-bottom: 0 !important;
+}
+body {
+    box-sizing: border-box;
+    background: #EEF0F8 !important;
 }
 
-.site-layout-sub-header-background {
-  background: #fff;
-}
 
-.site-layout-background {
-  background: #fff;
+.ant-layout.ant-layout-has-sider.main-sidebar-container{
+  height: 100vh !important;
 }
-body{
-
-  color: white !important ;
+.ant-layout .site-layout-sub-header-background{
+  background: #FFFFFF !important;
+}
+.site-layout-background{
+  height: 95%;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  padding: 20px;
 }
