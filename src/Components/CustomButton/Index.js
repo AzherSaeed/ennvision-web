@@ -1,17 +1,17 @@
 import React from "react";
 import { Button } from "antd";
-import { ButtonContainer } from "./Style";
+import { CustormButtonContainer } from "./style";
 
-const CustomButton = ({ title, type, bkColor, width, color, padding , clicked , form , key }) => {
+const CustomButton = ({ title, type, bgcolor, width, color, padding , clicked , form , key }) => {
   return (
-    <ButtonContainer
-      bkColor={bkColor}
+    <CustormButtonContainer
+    bgcolor={bgcolor}
       color={color}
       width={width}
       padding={padding}
     >
       <Button form={form} key={key} onClick={clicked} htmlType={type}>{title}</Button>
-    </ButtonContainer>
+    </CustormButtonContainer>
   );
 };
 

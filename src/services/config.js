@@ -1,1 +1,1 @@
-export const API_URL = 'http://3.208.1.250:8080/api/'
+export const API_URL = 'https://node01.dagnum.com:8443/alexazod/api/'

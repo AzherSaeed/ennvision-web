@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {PrimaryColor} from '../../CommonComponents/Global'
 
 export const InputStyleContainer = styled.div`
     .ant-input{
@@ -9,7 +10,7 @@ export const InputStyleContainer = styled.div`
        width: 100%;
     }
     .ant-input-suffix span{
-        color: red;
+        color: ${PrimaryColor};
         font-size: 12px;
         font-weight: 600;
     }
@@ -38,6 +39,6 @@ export const SelectStyleContainer = styled.div`
 export const InputErrorMessage = styled.div`
     color: red;
     text-align: start;
-    margin-left: 10px;
+    margin-left: 3px;
     font-size: 12px;
 `
