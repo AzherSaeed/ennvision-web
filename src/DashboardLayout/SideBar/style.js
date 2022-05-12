@@ -29,6 +29,7 @@ export const SideBarContainerMain = styled.div`
                 color: ${PrimaryColor};
                 font-size: 14px;
                 font-weight: 600;
+                cursor: pointer;
             }
         }
     }

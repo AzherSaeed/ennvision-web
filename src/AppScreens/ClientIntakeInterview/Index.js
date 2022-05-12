@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect} from "react";
 import TopHeader from "../../Components/TopHeader/Index";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import FormControl from "../../Components/FormControl";
@@ -54,6 +54,14 @@ const validationSchema = Yup.object({
 
 const Index = ({ userDetailForm, setuserDetailForm }) => {
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+
+
   const path = window.location.pathname.split('/')[1]
 
 
@@ -63,7 +71,8 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
       ...userDetailForm,
       clientIntakeInterviewEntity: {...values , photos : !values.photos ? 'No' : 'Yes'},
     });
-    resetForm();
+    console.log(userDetailForm , 'userDetailForm11');
+    // resetForm();
     navigate("/client-info");
   };
   const onFinishFailed = (errorInfo) => {
@@ -71,13 +80,15 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
   };
 
  
+
   return (
     <>
       <TopHeader heading='Client Intake Interview'  name="/insurance-info" icon={path === 'clientIntakeInterview' ? null : <ArrowLeftOutlined />}  />
       <Container>
         <Formik
-          initialValues={initialValues}
+          initialValues={userDetailForm.clientIntakeInterviewEntity ? userDetailForm.clientIntakeInterviewEntity : initialValues}
           // validationSchema={validationSchema}
+          enableReinitialize={true}
           onSubmit={onSubmit}
         >
           {(formik) => {
@@ -97,6 +108,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                       name="interviewDate"
                       placeholder="Interview Date"
                       label="Interview Date"
+                      defaultvalue={userDetailForm?.clientIntakeInterviewEntity?.interviewDate}
                     />
                     <FormControl
                       control="input"
@@ -119,6 +131,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                         name="dataOfLoss"
                         placeholder="Interview Date"
                         label="Date Of Lose"
+                        defaultvalue={userDetailForm?.clientIntakeInterviewEntity?.dataOfLoss}
                       />
                       <FormControl
                         control="time"
@@ -126,6 +139,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                         name="time"
                         placeholder="09:30AM"
                         label="Time"
+                        defaultvalue={userDetailForm?.clientIntakeInterviewEntity?.time }
                       />
                     </FlexContainer>
                     <FormControl
@@ -134,6 +148,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                       options={caseTypeOptions}
                       name="caseType"
                       label="Case Type"
+                      defaultvalue={userDetailForm?.clientIntakeInterviewEntity?.caseType || null }
                     />
                     <FormControl
                       control="input"

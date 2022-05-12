@@ -22,6 +22,12 @@ const navigateHandler = () => {
 }
 
 
+const logoutHandler = () => {
+  localStorage.removeItem('authToken')
+  navigate(`/`)
+}
+
+
 
 
   return (
@@ -66,7 +72,7 @@ const navigateHandler = () => {
                 <img onClick={() => navigateHandler()}  src={ic_search} alt="ic_search" />
                 <img src={ic_notification} alt="ic_notification" />
                 <img src={ic_us_flag} alt="ic_us_flag" />
-                <p>Log out</p>
+                <p onClick={() => logoutHandler()} >Log out</p>
               </div>
             </div>
           </Header>

@@ -5,7 +5,7 @@ import { Select, Form } from "antd";
 import { CustomSelectContainer } from "./style";
 
 const SelectComp = (props) => {
-  const { name, placeholder, label, options, ...rest } = props;
+  const { name, placeholder, defaultvalue , label, options, ...rest } = props;
 
 
 
@@ -30,6 +30,7 @@ const SelectComp = (props) => {
               <div className="custom-select-inner">
                 <Select
                   className="customSelect"
+                  defaultValue={defaultvalue}
                   name={name}
                   id={name}
                   {...rest}

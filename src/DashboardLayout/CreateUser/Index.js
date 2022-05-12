@@ -20,7 +20,7 @@ const initialValues = {
   lastName: "",
   role: ["user"],
   password: "",
-  phoneNumber: "+923008134089",
+  phoneNumber: "",
   userId: 0,
 };
 const validationSchema = Yup.object({
@@ -45,10 +45,9 @@ const Index = () => {
     genericService
       .post(`${API_URL}auth/signup`, values)
       .then((msg) => {
-        console.log(msg, "msgmsgmsg");
 
         if (msg.resultCode === 201) {
-          navigate("/confirmation");
+          navigate("/dashboard-confirmation");
           resetForm();
         } else if (msg.resultCode !== 201) {
           alert(msg.message);

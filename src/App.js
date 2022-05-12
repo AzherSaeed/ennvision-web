@@ -4,6 +4,7 @@ import "./App.css";
 import CreateUser from "./DashboardLayout/CreateUser/Index";
 import Login from "./DashboardLayout/Login/Index";
 import LastConfirmation from "./DashboardLayout/ConfirmationScreen/LastConfirmation";
+import SecondConfirmation from "./DashboardLayout/ConfirmationScreen/SecondConfirmation";
 // import ConfirmationScreen from "./DashboardLayout/ConfirmationScreen/Index";
 import UserDetail from "./DashboardLayout/UserDetail/Index";
 import ClientInformation from "./AppScreens/ClientInformation/Index";
@@ -32,6 +33,7 @@ function App() {
 
 
   const [userDetailForm, setuserDetailForm] = useState({});
+  
 
   useEffect(() => {
     if(path === 'clientIntakeInterview'){
@@ -45,7 +47,7 @@ function App() {
         console.log(error);
       });
     }
-  }, [path]);
+  }, []);
 
 
   console.log(userDetailForm , 'userDetailForm');
@@ -57,6 +59,7 @@ function App() {
         <Route path="UserTable" element={<UserTable />} />
         <Route path="createuser" element={<CreateUser />} />
         <Route path="confirmation" element={<LastConfirmation />} />
+        <Route path="dashboard-confirmation" element={<SecondConfirmation />} />
         <Route path="userDetail/:id" element={<UserDetail />} />
       </Routes>
       <div className="userapp-main-container">

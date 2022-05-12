@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect} from "react";
 import TopHeader from "../../Components/TopHeader/Index";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import FormControl from "../../Components/FormControl";
@@ -52,10 +52,17 @@ const validationSchema = Yup.object({
 const Index = ({userDetailForm , setuserDetailForm}) => {
   const navigate = useNavigate();
 
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+
   const onSubmit = (values, { resetForm }) => {
     console.log(values, 'values');
     setuserDetailForm({...userDetailForm , employmentInformationEntity : {...values , salary : !values.salary ? '' : `$ ${values.salary}` } })
-    resetForm()
+    // resetForm()
     navigate('/injury-info')
   };
   const onFinishFailed = (errorInfo) => {
@@ -66,7 +73,9 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
       <TopHeader  heading="Employment Information" name="/client-info" icon={<ArrowLeftOutlined />} />
       <Container>
         <Formik
-          initialValues={initialValues}
+          initialValues={userDetailForm.employmentInformationEntity ? userDetailForm.employmentInformationEntity : initialValues }
+          // validationSchema={validationSchema}
+          enableReinitialize = {true}
           // validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
@@ -127,6 +136,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                         options={lostofEarning}
                         name="lossOfEarnings"
                         label="Loss of Earnings"
+                        defaultvalue={userDetailForm?.employmentInformationEntity?.lossOfEarnings}
                       />
                       <FormControl
                         control="input"

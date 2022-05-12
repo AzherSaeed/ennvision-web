@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect} from "react";
 import TopHeader from "../../Components/TopHeader/Index";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import FormControl from "../../Components/FormControl";
@@ -89,10 +89,15 @@ const validationSchema = Yup.object({
 const Index = ({userDetailForm , setuserDetailForm}) => {
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const onSubmit = (values, { resetForm }) => {
     console.log(values , 'values');
     setuserDetailForm({...userDetailForm , clientInformationEntity : values })
-    resetForm()
+    // resetForm()
     navigate('/employement-info')
   };
   const onFinishFailed = (errorInfo) => {
@@ -106,8 +111,9 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
       <TopHeader heading="Client Information" name="/clientIntakeInterview/MTI=" icon={<ArrowLeftOutlined />} />
       <Container>
         <Formik
-          initialValues={initialValues}
+          initialValues={userDetailForm.clientInformationEntity ? userDetailForm.clientInformationEntity : initialValues }
           // validationSchema={validationSchema}
+          enableReinitialize = {true}
           onSubmit={onSubmit}
         >
           {(formik) => {
@@ -128,6 +134,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                         options={language}
                         name="language"
                         label="Language"
+                        defaultvalue={userDetailForm?.clientInformationEntity?.language}
                       />
                       <FormControl
                         control="select"
@@ -135,6 +142,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                         options={status}
                         name="status"
                         label="Status"
+                        defaultvalue={userDetailForm?.clientInformationEntity?.status}
                       />
                     </FlexContainer>
                     <FlexContainer>
@@ -144,6 +152,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                         options={martialStatus}
                         name="martialStatus"
                         label="Marital Status"
+                        defaultvalue={userDetailForm?.clientInformationEntity?.martialStatus}
                       />
                       <FormControl
                         control="select"
@@ -151,6 +160,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                         options={gender}
                         name="gender"
                         label="Gender"
+                        defaultvalue={userDetailForm?.clientInformationEntity?.gender}
                       />
                     </FlexContainer>
                     <FormControl
@@ -168,6 +178,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                         name="dataOfBirth"
                         placeholder="April 23, 2000"
                         label="Date of Birth"
+                        defaultvalue={userDetailForm?.clientInformationEntity?.dataOfBirth}
                       />
                       <FormControl
                         control="input"
@@ -188,7 +199,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                     <FlexContainer>
                       <FormControl
                         control="input"
-                        placeholder="Select One"
+                        placeholder="Type here.."
                         // options={selectOptions}
                         name="state"
                         label="State"
@@ -277,6 +288,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                         name="acExpires"
                         placeholder="MM.DD.YYYY"
                         label="Expire"
+                        defaultvalue={userDetailForm?.clientInformationEntity?.acExpires}
                       />
                       <FormControl
                         control="input"

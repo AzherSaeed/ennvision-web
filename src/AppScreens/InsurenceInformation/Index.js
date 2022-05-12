@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect} from "react";
 import TopHeader from "../../Components/TopHeader/Index";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import FormControl from "../../Components/FormControl";
@@ -60,6 +60,13 @@ const validationSchema = Yup.object({
 
 const Index = ({ userDetailForm, setuserDetailForm }) => {
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+
   const genericService = new GenericService();
 
   const onSubmit = (values, { resetForm }) => {
@@ -70,7 +77,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
       .post(`${API_URL}admin/submitform`, data)
       .then((msg) => {
         resetForm();
-        alert(msg.message);
+        navigate('/confirmation')
       })
       .catch((error) => {
         console.log(error);
@@ -84,8 +91,9 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
       <TopHeader name='/property-demage' heading="Insurance Information" icon={<ArrowLeftOutlined />} />
       <Container>
         <Formik
-          initialValues={initialValues}
-          // validationSchema={validationSchema}
+              initialValues={userDetailForm.insuranceInformationEntity ? userDetailForm.insuranceInformationEntity : initialValues }
+              // validationSchema={validationSchema}
+              enableReinitialize = {true}
           onSubmit={onSubmit}
         >
           {(formik) => {
@@ -130,6 +138,8 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                         name="validFrom"
                         placeholder="Type here..."
                         label="Valid From"
+                        defaultvalue={userDetailForm?.insuranceInformationEntity?.validFrom}
+                        
                       />
                       <FormControl
                         control="date"
@@ -137,6 +147,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                         name="validTo"
                         placeholder="Type here..."
                         label="Valid To"
+                        defaultvalue={userDetailForm?.insuranceInformationEntity?.validTo}
                       />
                     </FlexContainer>
 
@@ -177,6 +188,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                         options={dummayOptions}
                         name="coverage"
                         label="Coverage"
+                        defaultvalue={userDetailForm?.insuranceInformationEntity?.coverage}
                       />
                       <FormControl
                         control="select"
@@ -184,6 +196,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                         options={dummayOptions}
                         name="liabilityBI"
                         label="Liability Bi"
+                        defaultvalue={userDetailForm?.insuranceInformationEntity?.liabilityBI}
                       />
                     </FlexContainer>
                     <FlexContainer>

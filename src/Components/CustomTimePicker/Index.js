@@ -6,9 +6,9 @@ import ErrorMsg from '../ErrorMessage';
 import moment from 'moment'
 
 
+const format = 'HH:mm';
 const Index = (props) => {
-  const { name, placeholder, label, options, title, ...rest } = props;
-
+  const { name, placeholder, defaultvalue ,  label, options, title, ...rest } = props;
 
 
   return (
@@ -23,10 +23,12 @@ const Index = (props) => {
                   className="customdatepicker"
                   name={name}
                   id={name}
+                  format={format}
                   {...rest}
                   onChange={(val) => {
                     form.setFieldValue(name, moment(val._d).format('LT'));
                   }}
+                  defaultValue={defaultvalue ? moment(defaultvalue, 'HH:mm:ss') : '' } 
                 />
               </div>
             // </Form.Item>

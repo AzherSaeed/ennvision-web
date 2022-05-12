@@ -6,7 +6,7 @@ import ErrorMsg from '../ErrorMessage';
 import moment from 'moment'
 
 const Index = (props) => {
-  const { name, placeholder, label, options, title, ...rest } = props;
+  const { name, placeholder, defaultvalue , label, options, title, ...rest } = props;
 
 
 
@@ -26,6 +26,7 @@ const Index = (props) => {
                   onChange={(val) => {
                     form.setFieldValue(name, moment(val._d).format('YYYY/MM/DD'));
                   }}
+                  defaultValue={defaultvalue ? moment(defaultvalue) : ''}
                 />
               </div>
             // </Form.Item>

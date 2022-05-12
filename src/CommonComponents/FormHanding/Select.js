@@ -7,7 +7,7 @@ import {SelectStyleContainer} from './Style';
 
 const SelectComp = (props) => {
   const { name, placeholder ,label, options, ...rest } = props;
-  const OptionsArr = options.map((option) => {
+  const OptionsArr = options?.map((option) => {
     return (
       <Select.Option key={option.value} value={option.value}>
         {option.key}

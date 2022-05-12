@@ -17,8 +17,7 @@ const Index = () => {
     // else if(path === '/createuser'){
     //   navigate('/UserTable')
     // }
-    navigate('/clientIntakeInterview/aaa')
-    
+    navigate('/createuser')
   }
   return (
     <CenterDiv>
