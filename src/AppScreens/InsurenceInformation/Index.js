@@ -77,7 +77,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
       .post(`${API_URL}admin/submitform`, data)
       .then((msg) => {
         resetForm();
-        navigate('/confirmation')
+        navigate("/accident-fact")
       })
       .catch((error) => {
         console.log(error);

@@ -1,8 +1,8 @@
 import React from "react";
 import { ConfirmationContainer } from "./Style";
-import { CenterDiv } from "../../CommonComponents/Global";
-import Button from "../../CommonComponents/Button";
-import {PrimaryColor} from '../../CommonComponents/Global';
+import { CenterDiv } from "../../Components/Global";
+import Button from "../../Components/Button";
+import {PrimaryColor} from '../../Components/Global';
 import {useNavigate} from 'react-router-dom';
 
 const Index = () => {

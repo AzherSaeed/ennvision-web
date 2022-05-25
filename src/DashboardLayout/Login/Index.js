@@ -1,14 +1,14 @@
 import React from "react";
-import { CenterDiv } from "../../CommonComponents/Global";
+import { CenterDiv } from "../../Components/Global";
 import { LoginFormContainer } from "./Style";
 import ic_logo from "../../Assets/ic_logo.svg";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import FormControl from "../../CommonComponents/FormHanding/FormController";
-import Button from "../../CommonComponents/Button";
+import FormControl from "../../Components/FormHanding/FormController";
+import Button from "../../Components/Button";
 import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
-import { PrimaryColor } from "../../CommonComponents/Global";
+import { PrimaryColor } from "../../Components/Global";
 import GenerecService from "../../services/GenericService";
 import { API_URL } from "../../services/config";
 

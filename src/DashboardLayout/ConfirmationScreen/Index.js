@@ -1,9 +1,9 @@
 import React from "react";
 import { ConfirmationContainer } from "./Style";
-import { CenterDiv, FlexRowContainer } from "../../CommonComponents/Global";
-import Button from "../../CommonComponents/Button";
+import { CenterDiv, FlexRowContainer } from "../../Components/Global";
+import Button from "../../Components/Button";
 import ic_logo from "../../Assets/ic_logo.svg";
-import {PrimaryColor} from '../../CommonComponents/Global';
+import {PrimaryColor} from '../../Components/Global';
 
 const Index = () => {
   return (

@@ -13,6 +13,9 @@ import EmployementInformation from "./AppScreens/EmployementInformation/Index";
 import InjuryInformation from "./AppScreens/InjuryInformation/Index";
 import InsurenceInformation from "./AppScreens/InsurenceInformation/Index";
 import PropertyDemage from "./AppScreens/PropertyDemage/Index";
+import AccidentFacts from './AppScreens/FactOfAccident/Index';
+import DefendantInfo from './AppScreens/DefendantInformation/Index';
+import OtherVehicle from './AppScreens/OtherVehicle/Index';
 import { Routes, Route , useLocation } from "react-router-dom";
 import GenericService from "./services/GenericService";
 import { API_URL } from "./services/config";
@@ -113,6 +116,33 @@ function App() {
             path="/insurance-info"
             element={
               <InsurenceInformation
+                userDetailForm={userDetailForm}
+                setuserDetailForm={setuserDetailForm}
+              />
+            }
+          />
+          <Route
+            path="/accident-fact"
+            element={
+              <AccidentFacts
+                userDetailForm={userDetailForm}
+                setuserDetailForm={setuserDetailForm}
+              />
+            }
+          />
+          <Route
+            path="/defendant-info"
+            element={
+              <DefendantInfo
+                userDetailForm={userDetailForm}
+                setuserDetailForm={setuserDetailForm}
+              />
+            }
+          />
+          <Route
+            path="/other-vehicle"
+            element={
+              <OtherVehicle
                 userDetailForm={userDetailForm}
                 setuserDetailForm={setuserDetailForm}
               />

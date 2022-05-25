@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {PrimaryColor} from '../../CommonComponents/Global'
+import {PrimaryColor} from '../../Components/Global'
 
 export const LoginFormContainer = styled.div`
   width: 500px;
