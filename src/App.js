@@ -31,7 +31,7 @@ function App() {
 
   const base64ToStringNew = urlId ? Base64?.decode(urlId) : '';
   const stringToNumber = parseInt(base64ToStringNew);
-  console.log("id in app",stringToNumber)
+
 
   const path = location.pathname.split('/')[1]
 

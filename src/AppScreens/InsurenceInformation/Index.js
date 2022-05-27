@@ -222,7 +222,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                       color="white"
                       padding="5px 0"
                       type="submit"
-                      title="Submit"
+                      title="Next"
                       // form="basic"
                       // key="submit"
                     />

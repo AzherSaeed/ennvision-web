@@ -106,7 +106,7 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
         console.log(values, 'values');
        const data= { ...userDetailForm, otherVehiclesInvolvedEntity: values };
        console.log(data,"data of form")
-        // resetForm()
+        resetForm();
     genericService.post(`${API_URL}admin/submitform`,data).then((msg) => {
         const result = msg.data;
         
