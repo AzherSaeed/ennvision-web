@@ -28,6 +28,7 @@ const dummayOptions = [
 ]
 
 const initialValues = {
+  id:"0",
   carrier: "",
   phoneNumber: "",
   policyNo: "",
@@ -67,21 +68,11 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
   }, [])
 
 
-  const genericService = new GenericService();
+
 
   const onSubmit = (values, { resetForm }) => {
-    console.log(values , 'values');
-    const data = { ...userDetailForm, insuranceInformationEntity: values };
-    // setuserDetailForm({...userDetailForm , insuranceInformationEntity : values })
-    genericService
-      .post(`${API_URL}admin/submitform`, data)
-      .then((msg) => {
-        resetForm();
-        navigate("/accident-fact")
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setuserDetailForm({...userDetailForm , insuranceInformationEntity : values })
+    navigate("/accident-fact")
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);

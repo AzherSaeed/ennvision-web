@@ -30,13 +30,15 @@ function App() {
 
 
   const base64ToStringNew = urlId ? Base64?.decode(urlId) : '';
-  const stringToNumber = parseInt(base64ToStringNew)
+  const stringToNumber = parseInt(base64ToStringNew);
+  console.log("id in app",stringToNumber)
 
   const path = location.pathname.split('/')[1]
 
 
-  const [userDetailForm, setuserDetailForm] = useState({});
-  
+  const [userDetailForm, setuserDetailForm] = useState({ 	
+  });
+  console.log(userDetailForm,"userDetails")
 
   useEffect(() => {
     if(path === 'clientIntakeInterview'){

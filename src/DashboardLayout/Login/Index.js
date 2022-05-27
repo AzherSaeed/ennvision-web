@@ -32,7 +32,6 @@ const Index = () => {
       .then((msg) => {
         if(msg.resultCode === 200){
           resetForm();
-          console.log(msg);
           localStorage.setItem('authToken' , `Bearer ${msg.data.accessToken}`)
           navigate("/createuser");
         }

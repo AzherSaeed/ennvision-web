@@ -28,42 +28,46 @@ const towedOptions= [
 ]
 
 const initialValues = {
-  noOfVehicles: "",
-  personsInjured: "",
-  personsKilled: "",
+  id:"0",
+  noOfTheVehicles: "",
+  noOfThePersonsInjured: "",
+  noOfThePersonsKilled: "",
   policeReport: "",
-  report: "",
-  noOfOfficers: "",
-  noOfPoliceCars: "",
+  reportNo: "",
+  noOfTheOfficers: "",
+  noOfThePoliceCars: "",
   department: "",
   witness: "",
-  witnessName: "",
-  witnessPhone: "",
+  name: "",
+  phoneNo: "",
   weatherCondition:"",
   roadCondition: "",
   anyCriminalConduct: "",
-  descriptionOfAccident: "",
-  speedOfVehicles: "",
+  speedOfTheVehicles: "",
+  pCClient:"",
+  dDDefendant:"",
+  descriptionOfTheAccident: "",
+
 };
 const validationSchema = Yup.object({
-    noOfVehicles: Yup.string().required("No Of vehicles required"),
-    personsInjured: Yup.string().required("Person Injured is required"),
-    personsKilled: Yup.string().required("Person Killed is required"),
+    noOfTheVehicles: Yup.string().required("No Of vehicles required"),
+    noOfThePersonsInjured: Yup.string().required("Person Injured is required"),
+    noOfThePersonsKilled: Yup.string().required("Person Killed is required"),
     policeReport: Yup.string().required("Police Report is required"),
-    report: Yup.string().required("Report is required"),
-    noOfOfficers: Yup.string().required("No of Officers required"),
-    noOfPoliceCars: Yup.string().required("No of Police Cars is required"),
+    reportNo: Yup.string().required("Report No is required"),
+    noOfTheOfficers: Yup.string().required("No of Officers required"),
+    noOfThePoliceCars: Yup.string().required("No of Police Cars is required"),
     department: Yup.string().required("Department is required"),
-    witness: Yup.string().required(
-    "Witness is required"
-  ),
-  witnessName: Yup.string().required("Witness Name is required"),
-  witnessPhone: Yup.string().required("Witness Name is required"),
+    witness: Yup.string().required("Witness is required"),
+  name: Yup.string().required("Witness Name is required"),
+  phoneNo: Yup.string().required("Witness Name is required"),
   weatherCondition:Yup.string().required("Weather Condition is required"),
   roadCondition: Yup.string().required("Road Condition is required"),
   anyCriminalConduct: Yup.string().required("Any Criminal Condition is required"),
-  descriptionOfAccident: Yup.string().required("Description of Condition is required"),
-  speedOfVehicles: Yup.string().required("Speed Of Vehicle is required"),
+  speedOfTheVehicles: Yup.string().required("Speed Of Vehicle is required"),
+  pCClient: Yup.string().required("pCClient is required"),
+  dDDefendant: Yup.string().required("dDDefendant is required"),
+  descriptionOfTheAccident: Yup.string().required("Description of Condition is required"),
 });
 
 const Index = ({userDetailForm , setuserDetailForm}) => {
@@ -75,8 +79,8 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
   }, [])
 
   const onSubmit = (values, { resetForm }) => {
-    console.log(values , 'values');
-    setuserDetailForm({...userDetailForm , propertyDamageEntity : values })
+    console.table(values , 'values in fact of accident');
+    setuserDetailForm({...userDetailForm , factsOfTheAccidentEntity : values })
     // resetForm()
     navigate('/defendant-info')
   };
@@ -108,14 +112,14 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                       <FormControl
                         control="input"
                         type="text"
-                        name="noOfVehicles"
+                        name="noOfTheVehicles"
                         placeholder="Type here.."
                         label="No, of the Vehicles"
                       />
                       <FormControl
                         control="input"
                         type="text"
-                        name="personsInjured"
+                        name="noOfThePersonsInjured"
                         placeholder="Type here.."
                         label="No. of the Persons Injured"
                       />
@@ -124,7 +128,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                       <FormControl
                         control="input"
                         type="text"
-                        name="personsKilled"
+                        name="noOfThePersonsKilled"
                         placeholder="Type here.."
                         label="Model"
                       />
@@ -142,15 +146,15 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
 
                     <FormControl
                       control="input"
-                      name="report"
+                      name="reportNo"
                       placeholder="Type here..."
-                      label="Report"
+                      label="Report No"
                       />
                     <FormControl
                       control="input"
                       placeholder="Type here..."
                       // options={selectOptions}
-                      name="noOfOfficers"
+                      name="noOfTheOfficers"
                       label="No. of the Officers"
                       />
 
@@ -158,7 +162,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                     <FormControl
                       control="input"
                       type="text"
-                      name="noOfPoliceCars"
+                      name="noOfThePoliceCars"
                       placeholder="Type here..."
                       label="No. of the police Cars"
                     />
@@ -182,20 +186,20 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                      <FormControl
                       control="input"
                       type="text"
-                      name="witnessName"
+                      name="name"
                       placeholder="Type here.."
                       label="Witness Name"
                     />
                      <FormControl
                       control="input"
                       type="text"
-                      name="WitnessPhone"
+                      name="phoneNo"
                       placeholder="+1 234 45 67"
                       label="Witness Phone"
                     />
+                     
                      <FormControl
-                         name="weatherCondition
-                         "
+                         name="weatherCondition"
                          label="Weather Condition"
                       control="input"
                       type="text"
@@ -203,13 +207,51 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                     />
 
                     <FormControl
-                      control="select"
+                      control="input"
                       type="text"
                       name="roadCondition"
                       placeholder="Type here..."
                       label="Road Condition"
                     />
+                
+                    <FormControl
+                      control="textarea"
+                      type="text"
+                      name="anyCriminalConduct"
+                      placeholder="Type here..."
+                      label="Any Criminal Conduct"
+                    />
+                    <FormControl
+                      control="input"
+                      type="text"
+                      name="speedOfTheVehicles"
+                      placeholder="Type here..."
+                      label="Speed Of Vehicles"
+                    />
+
+                    <FormControl
+                      control="textarea"
+                      type="text"
+                      name="descriptionOfTheAccident"
+                      placeholder="Type here..."
+                      label="Description Of Accident"
+                    />
+                   <label htmlFor="">Speed Of the Vehicles</label>
+                   <div className="speed-of-vehicle">
                     <FlexContainer>
+                     <div className="input-section">
+                     <label htmlFor="">PC (Client)</label>
+                    <Input name="pCClient" value={formik.values.pCClient}  onChange={formik.handleChange} onBlur={formik.handleBlur}  addonAfter='MPH' defaultValue="" />       
+                     </div>
+                     <div className="input-section">
+                     <label htmlFor="">DD (Defendant)</label>
+                    <Input name="dDDefendant" value={formik.values.dDDefendant}  onChange={formik.handleChange} onBlur={formik.handleBlur}  addonAfter='MPH' defaultValue="Type here.." />       
+                     </div>
+                    </FlexContainer>     
+                   </div>
+                  </div>
+                  <div className="form-buttons">
+                  <FlexContainer>
                     <CustomButton
                       bgcolor={PrimaryColor}
                       color="white"
@@ -229,36 +271,7 @@ const Index = ({userDetailForm , setuserDetailForm}) => {
                       // key="submit"
                     />
                   </FlexContainer>
-                    <FormControl
-                      control="textarea"
-                      type="text"
-                      name="anyCriminalConduct"
-                      placeholder="Type here..."
-                      label="Any Criminal Conduct"
-                    />
-
-                    <FormControl
-                      control="textarea"
-                      type="text"
-                      name="descriptionOfAccident"
-                      placeholder="Type here..."
-                      label="Description Of Accident"
-                    />
-                   <label htmlFor="">Speed Of the Vehicles</label>
-                   <div className="speed-of-vehicle">
-                    <FlexContainer>
-                     <div className="input-section">
-                     <label htmlFor="">PC (Client)</label>
-                    <Input  addonAfter='MPH' defaultValue="" />       
-                     </div>
-                     <div className="input-section">
-                     <label htmlFor="">DD (Defendant)</label>
-                    <Input  addonAfter='MPH' defaultValue="Type here.." />       
-                     </div>
-                    </FlexContainer>     
-                   </div>
                   </div>
-                  
                 </div>
               </Form>
             );

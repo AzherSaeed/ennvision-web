@@ -14,6 +14,8 @@ import { Container } from "./style";
 import { useNavigate } from "react-router-dom";
 import HeadingBar from "../../Components/HeadingBar/Index";
 import { Input } from "antd";
+import GenericService from "../../services/GenericService";
+import { API_URL } from "../../services/config";
 
 const selectOptions = [
     { key: "user", value: "User" },
@@ -28,68 +30,73 @@ const towedOptions = [
 ]
 
 const initialValues = {
-    driverName: "",
-    driverLicenseNo: "",
-    state: "",
-    address:"",
-    phoneNo: "",
-    registeredOwnerPhone: "",
-    registeredOwnerName: "",
-    registeredOwnerAddress: "",
-    vehicleYear:"",
-    vehicleModel:"",
-    vehicleMake:"",
-    vehicleColor:"",
-    licensePlate: "",
-    insuranceCo: "",
-    policyNo:"",
-    insuredName:"",
-    claimNo: "",
-    adjuster: "",
-    agentName: "",
-    passengerInVehicle:"",
-    comments: "",
-    // lossOfEarnings: "",
-    // hourlyRate: "",
-    // hourlyLost: "",
-    // Supervisor: "",
-    // vehicleYour: "",
-    // vehicleMake: "",
-    // phone: ""
+    id:"0",
+    firstVehicleNumber: "",
+    firstVehicleLicensePlate: "",
+    firstVehicleState: "",
+    firstVehicleDriver: "",
+    firstVehicleDriverLicenseNo: "",
+    firstVehicleDriverState: "",
+    firstVehicleNoOfPassengers: "",
+    firstVehicleAddress: "",
+    firstVehiclePhoneNo: "",
+    firstVehicleInsuranceCo: "",
+    firstVehiclePolicyNo: "",
+    firstVehicleYear: "",
+    firstVehicleMake: "",
+    firstVehicleModel: "",
+    firstVehicleColor: "",
+    secondVehicleNumber: "",
+    adjsecondVehicleLicensePlateuster: "",
+    secondVehicleDriver: "",
+    secondVehicleDriverLicenseNo: "",
+    secondVehicleDriverState: "",
+    secondVehicleNoOfPassengers:"",
+    secondVehicleAddress:"",
+    secondVehiclePhoneNo:"",
+    secondVehicleInsuranceCo:"",
+    secondVehiclePolicyNo:"",
+    secondVehicleYear:"",
+    secondVehicleMake:"",
+    secondVehicleModel:"",
+    secondVehicleColor:""
 };
 const validationSchema = Yup.object({
-
-    driverName: Yup.string().required("Driver Name is required"),
-    driverLicenseNo: Yup.string().required("Driver License No is required"),
-    state: Yup.string().required(" required"),
-    address: Yup.string().required(
-    "Address is required"
-    ),
-    phoneNo: Yup.string().required(
-    "Phone No is required"
-    ),
-    registeredOwnerName: Yup.string().required(" Owner Name is required"),
-    registeredOwnerAddress:Yup.string().required("Owner Address is required"),
-    registeredOwnerPhone: Yup.string().required("Owner Phone is required"),
-    vehicleYear:Yup.string().required("Vehicle Year is required"),
-    vehicleModel:Yup.string().required("Vehicle Model is required"),
-    vehicleMake:Yup.string().required("Vehicle is Make required"),
-    vehicleColor:Yup.string().required("Vehicle Color is required"),
-    vehicleYour: Yup.string().required("Person Killed is required"),
-    licensePlate: Yup.string().required("No of Police Cars is required"),
-    insuranceCo: Yup.string().required("Insurance Co is required"),
-    policyNo: Yup.string().required("InsuredName  required"),
-    insuredName: Yup.string().required("Insured Name is required"),
-    claimNo: Yup.string().required("Claim No is required"),
-    adjuster: Yup.string().required("Adjuster is required"),
-    passengerInVehicle:Yup.string().required("Passenger In Vehicle is required"),
-    agentName: Yup.string().required("Agent Name is required"),
-    comments: Yup.string().required("Comments is required"),
+    firstVehicleNumber: Yup.string().required("First Vehicle Number is required"),
+    firstVehicleLicensePlate: Yup.string().required("First Vehicle LicensePlate is required"),
+    firstVehicleState: Yup.string().required("First Vehicle State is required"),
+    firstVehicleDriver: Yup.string().required("First Vehicle Driver is required"),
+    firstVehicleDriverLicenseNo: Yup.string().required("First Vehicle Driver LicenseNo is required"),
+    firstVehicleDriverState: Yup.string().required("First Vehicle Driver State is required"),
+    firstVehicleNoOfPassengers: Yup.string().required("First VehicleNo Of Passengers is required"),
+    firstVehicleAddress: Yup.string().required("First Vehicle Address is required"),
+    firstVehiclePhoneNo: Yup.string().required("First Vehicle PhoneNo is required"),
+    firstVehicleInsuranceCo: Yup.string().required("First Vehicle InsuranceCo is required"),
+    firstVehiclePolicyNo: Yup.string().required("First Vehicle PolicyNo is required"),
+    firstVehicleYear: Yup.string().required("First Vehicle Year is required"),
+    firstVehicleMake: Yup.string().required("First Vehicle Make is required"),
+    firstVehicleModel: Yup.string().required("First Vehicle Model is required"),
+    firstVehicleColor: Yup.string().required("First Vehicle Color is required"),
+    secondVehicleNumber: Yup.string().required("Second Vehicle Number is required"),
+    adjsecondVehicleLicensePlateuster: Yup.string().required("Adjsecond Vehicle License Plateuste is required"),
+    secondVehicleDriver: Yup.string().required("Second Vehicle Driver is required"),
+    secondVehicleDriverLicenseNo: Yup.string().required("Second Vehicle Driver LicenseNo is required"),
+    secondVehicleDriverState: Yup.string().required("Second Vehicle Driver State is required"),
+    secondVehicleNoOfPassengers:Yup.string().required("second Vehicle No Of Passengers is required"),
+    secondVehicleAddress:Yup.string().required("Second Vehicle Address is required"),
+    secondVehiclePhoneNo:Yup.string().required("Second Vehicle PhoneNo is required"),
+    secondVehicleInsuranceCo:Yup.string().required("Second Vehicle InsuranceCo is required"),
+    secondVehiclePolicyNo:Yup.string().required("Second Vehicle PolicyNo is required"),
+    secondVehicleYear:Yup.string().required("Second Vehicle Year is required"),
+    secondVehicleMake:Yup.string().required("Second Vehicle Make is required"),
+    secondVehicleModel:Yup.string().required("Second Vehicle Model is required"),
+    secondVehicleColor:Yup.string().required("Second Vehicle Color is required"),
 });
 
 const Index = ({ userDetailForm, setuserDetailForm }) => {
     const navigate = useNavigate();
-
+    const genericService = new GenericService();
+    
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -97,16 +104,25 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
 
     const onSubmit = (values, { resetForm }) => {
         console.log(values, 'values');
-        setuserDetailForm({ ...userDetailForm, propertyDamageEntity: values })
+       const data= { ...userDetailForm, otherVehiclesInvolvedEntity: values };
+       console.log(data,"data of form")
         // resetForm()
-        navigate('/confirmation')
+    genericService.post(`${API_URL}admin/submitform`,data).then((msg) => {
+        const result = msg.data;
+        
+        console.log(result,"result full Form");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+        navigate('/confirmation');
     };
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
     };
     return (
         <>
-            <TopHeader name="/defendant-info" heading="Defendant's Information" icon={<ArrowLeftOutlined />} />
+            <TopHeader name="/defendant-info" heading="Other Vehicle Involved" icon={<ArrowLeftOutlined />} />
             <Container>
                 <Formik
                     initialValues={userDetailForm.propertyDamageEntity ? userDetailForm.propertyDamageEntity : initialValues}
@@ -125,80 +141,159 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                             >
                                 <div className="create-user-main">
                                     <div className="create-user-main-inner-fields">
-                                       
-                                            <FormControl
-                                                control="input"
-                                                type="text"
-                                                name="driverName"
-                                                placeholder="Full Name"
-                                                label="Driver Name"
-                                            />
-                                            <FormControl
-                                                control="input"
-                                                type="text"
-                                                name="driverLicenseNo"
-                                                placeholder="Type here.."
-                                                label="Driver License No"
-                                            />
-                                        
-                                        <FlexContainer>
-                                           
-                                            <FormControl
-                                                control="select"
-                                                placeholder="Select "
-                                                name="state"
-                                                label="State"
-                                                options={towedOptions}
-                                                type="text"
-                                               
-                                            />
-                                            <FormControl
-                                                control="select"
-                                                placeholder="Select"
-                                                name="address"
-                                                label="Address"
-                                                options={towedOptions}
-                                                type="text"
-                                                
-                                                />
 
-                                        </FlexContainer>
-                                       
-
-                                            <FormControl
-                                                control="input"
-                                                type="text"
-                                                name="Phone No"
-                                                placeholder="(617) 397 - 8483"
-                                                label="Phone No"
-                                            />
-                                          
-                                            <FormControl
-                                                control="input"
-                                                placeholder="Type here..."
-                                                // options={selectOptions}
-                                                name="registeredOwnerName"
-                                                label="Registered Owner Name"
-                                            />
-                                            <FormControl
+                                    <FormControl
                                             control="input"
-                                            type="text"
-                                            name="registeredOwnerAddress"
-                                            placeholder="Type here..."
-                                            label="Registered Owner Address"
+                                            placeholder="Select One"                                       name="firstVehicleNumber"
+                                            label="First Vehicle Number"
                                         />
-
-                                        
-                                     
-
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleLicensePlate"
+                                            label="First Vehicle LicensePlate"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleState"
+                                            label="First Vehicle State"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleDriver"
+                                            label="First Vehicle Driver"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleDriverLicenseNo"
+                                            label=""
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleDriverLicenseNo"
+                                            label="First Vehicle Driver LicenseNo"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleDriverState"
+                                            label="First Vehicle Driver State"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleNoOfPassengers"
+                                            label="First VehicleNo Of Passengers"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleAddress"
+                                            label="First Vehicle Address"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehiclePhoneNo"
+                                            label="First Vehicle PhoneNo"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleInsuranceCo"
+                                            label="First Vehicle InsuranceCo"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehiclePolicyNo"
+                                            label="First Vehicle PolicyNo"
+                                        />
+                                    <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleYear"
+                                            label="First Vehicle Year"
+                                        />
                                         <FormControl
                                             control="input"
-                                            type="text"
-                                            name="registeredOwnerPhone"
-                                            placeholder="Type here.."
-                                            label="Registered Owner Phone"
+                                            placeholder="Select One"                                       name="firstVehicleMake"
+                                            label="First Vehicle Make"
                                         />
-                                          <FlexContainer>
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleModel"
+                                            label="First Vehicle Model"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="firstVehicleColor"
+                                            label="First Vehicle Color"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleNumber"
+                                            label="Second Vehicle Number"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="adjsecondVehicleLicensePlateuster"
+                                            label="Adjsecond Vehicle License Plateuster"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleDriver"
+                                            label="Second Vehicle Driver"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleDriverLicenseNo"
+                                            label="Second Vehicle Driver LicenseNo"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleDriverState"
+                                            label="Second Vehicle Driver State"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleNoOfPassengers"
+                                            label="second Vehicle No Of Passengers"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleAddress"
+                                            label="Second Vehicle Address"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehiclePhoneNo"
+                                            label="Second Vehicle PhoneNo"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleInsuranceCo"
+                                            label="Second Vehicle InsuranceCo"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehiclePolicyNo"
+                                            label="Second Vehicle PolicyNo"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleYear"
+                                            label="Second Vehicle Year"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleMake"
+                                            label="Second Vehicle Make"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleModel"
+                                            label="Second Vehicle Model"
+                                        />
+                                        <FormControl
+                                            control="input"
+                                            placeholder="Select One"                                       name="secondVehicleColor"
+                                            label="Second Vehicle Color"
+                                        />
+                                    </div>
+                                    <FlexContainer>
                                             <CustomButton
                                                 bgcolor={PrimaryColor}
                                                 color="white"
@@ -213,124 +308,11 @@ const Index = ({ userDetailForm, setuserDetailForm }) => {
                                                 color="white"
                                                 padding="5px 0"
                                                 type="submit"
-                                                title="Next"
+                                                title="Submit"
                                             // form="basic"
                                             // key="submit"
                                             />
                                         </FlexContainer>
-                                        <FlexContainer>
-                                             <FormControl
-                                            control="input"
-                                            type="text"
-                                            name="vehicleYear"
-                                            placeholder="Type here.."
-                                            label="Vehicle Year"
-                                        />
-                                        <FormControl
-                                            control="input"
-                                            type="text"
-                                            name="VehicleModel"
-                                            placeholder="Type here..."
-                                            label="Vehicle Model"
-                                        />
- </FlexContainer>
-
-                                      <FlexContainer>
-                                      <FormControl
-                                            name="vehicleMake
-                         "
-                                            label="Vehicle Make"
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-                                        <FormControl
-                                            name="Vehicle Color
-                         "
-                                            label="vehicleColor"
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-
-                                      </FlexContainer>
-                                       
-                                        
-                                        <FormControl
-                                            name="licensePlate
-                         "
-                                            label="License Plate"
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-                                        <FormControl
-                                            name="insuranceCo
-                         "
-                                            label="Insurance Co."
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-                                        <FormControl
-                                            name="policyNo
-                         "
-                                            label="Policy No"
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-                                        <FormControl
-                                            name="insuredName
-                         "
-                                            label="Insured Name"
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-                                        <FormControl
-                                            name="claimNo
-                         "
-                                            label="Claim No."
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-                                        <FormControl
-                                            name="adjuster
-                         "
-                                            label="Adjuster"
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-                                        <FormControl
-                                            name="agentName
-                         "
-                                            label="Agent Name"
-                                            control="input"
-                                            type="text"
-                                            placeholder="Type here.."
-                                        />
-                                          <FormControl
-                                            control="select"
-                                            placeholder="Select One"
-                                            options={towedOptions}
-                                            name="passengerInVehicle"
-                                            label="Passenger In Vehicle"
-                                        />
-                   
-
-                                        <FormControl
-                                            control="textarea"
-                                            type="text"
-                                            name="Comments"
-                                            placeholder="Type here..."
-                                            label="Comments"
-                                        />
-                                        
-                                    </div>
-
                                 </div>
                             </Form>
                         );

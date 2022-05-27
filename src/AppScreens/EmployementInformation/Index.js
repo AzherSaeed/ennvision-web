@@ -26,6 +26,7 @@ const lostofEarning = [
   { key: "no", value: "No" },
 ]
 const initialValues = {
+  id:"0",
   fullName: "",
   cellPhoneNumber: "",
   state: "",
